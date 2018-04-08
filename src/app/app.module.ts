@@ -12,19 +12,24 @@ import { environment } from '../environments/environment';
 
 import { ComponentsModule } from '../components/components.module';
 
+//Page
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+
+//Provider
 import { AuthProvider } from '../providers/auth/auth';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    LoginPage,
+    SignupPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(environment.firebase, 'ChatOnMap'),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
@@ -35,7 +40,8 @@ import { AuthProvider } from '../providers/auth/auth';
   ],
   entryComponents: [
     MyApp,
-    HomePage
+    LoginPage,
+    SignupPage
   ],
   providers: [
     StatusBar,
