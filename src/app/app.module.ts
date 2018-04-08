@@ -10,18 +10,26 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { environment } from '../environments/environment';
 
-import { MyApp } from './app.component';
+import { ComponentsModule } from '../components/components.module';
 
+//Page
+import { MyApp } from './app.component';
+import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+
+//Provider
 import { AuthProvider } from '../providers/auth/auth';
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    LoginPage,
+    SignupPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(environment.firebase, 'ChatOnMap'),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule
@@ -30,7 +38,9 @@ import { AuthProvider } from '../providers/auth/auth';
     IonicApp
   ],
   entryComponents: [
-    MyApp
+    MyApp,
+    LoginPage,
+    SignupPage
   ],
   providers: [
     StatusBar,
