@@ -1,13 +1,13 @@
 //
-// Header
+// Footer
 //
 
-.app-header {
+.app-footer {
   height: 50px;
-  border-bottom: 1px solid $border-color;
+  border-top: 1px solid $border-color;
   background-color: color('white');
 
-  &::after {
+  &::before {
     background: none;
   }
 

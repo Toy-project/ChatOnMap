@@ -1,13 +1,20 @@
 import { NgModule } from '@angular/core';
+import { IonicModule } from 'ionic-angular';
+
 import { LayHeaderComponent } from './lay-header/lay-header';
+import { LayFooterComponent } from './lay-footer/lay-footer';
 
 @NgModule({
 	declarations: [
-		LayHeaderComponent
+		LayHeaderComponent,
+    LayFooterComponent
 	],
-	imports: [],
+	imports: [
+		IonicModule
+	],
 	exports: [
-		LayHeaderComponent
+		LayHeaderComponent,
+    LayFooterComponent
 	]
 })
 export class ComponentsModule {}
