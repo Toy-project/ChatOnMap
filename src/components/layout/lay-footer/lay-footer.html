@@ -3,7 +3,7 @@
   <ion-row>
     <!-- button nav -->
     <ion-col *ngFor="let nav of navData; let ind = index;">
-      <button type="button" class="btn text-{{nav.color}}">
+      <button type="button" class="btn text-{{nav.color}}" [navPush]="nav.page">
         <ion-icon ios="ios-{{nav.icon}}" md="md-{{nav.icon}}"></ion-icon>
       </button>
     </ion-col>

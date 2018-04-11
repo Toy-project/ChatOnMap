@@ -10,7 +10,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { environment } from '../environments/environment';
 
-import { ComponentsModule } from '../components/components.module';
+import { LayoutModule } from '../components/layout/layout.module';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -28,7 +28,7 @@ import { AuthProvider } from '../providers/auth/auth';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    ComponentsModule
+    LayoutModule
   ],
   bootstrap: [
     IonicApp

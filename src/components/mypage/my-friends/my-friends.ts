@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
 
 /**
- * Generated class for the LayHeaderComponent component.
+ * Generated class for the MyFriendsComponent component.
  *
  * See https://angular.io/api/core/Component for more info on Angular
  * Components.
  */
 @Component({
-  selector: 'lay-header',
-  templateUrl: 'lay-header.html'
+  selector: 'my-friends',
+  templateUrl: 'my-friends.html'
 })
-export class LayHeaderComponent {
+export class MyFriendsComponent {
 
   text: string;
 
   constructor() {
-    console.log('Hello LayHeaderComponent Component');
+    console.log('Hello MyFriendsComponent Component');
     this.text = 'Hello World';
   }
 

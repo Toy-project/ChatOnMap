@@ -17,4 +17,4 @@ import { LayFooterComponent } from './lay-footer/lay-footer';
     LayFooterComponent
 	]
 })
-export class ComponentsModule {}
+export class LayoutModule {}

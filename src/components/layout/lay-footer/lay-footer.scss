@@ -3,15 +3,18 @@
 //
 
 .app-footer {
-  height: 50px;
-  border-top: 1px solid $border-color;
   background-color: color('white');
+  z-index: $zindex-layout;
 
   &::before {
-    background: none;
+    display: none;
   }
 
-  .grid,
+  .grid {
+    height: 50px;
+    border-top: 1px solid $border-color;
+  }
+
   .row {
     height: 100%;
   }

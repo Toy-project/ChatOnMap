@@ -3,19 +3,22 @@
   <ion-row>
     <!-- button back -->
     <ion-col>
-      <button type="button" class="btn btn-back">
+      <button type="button" class="btn btn-back" navPop>
         <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
     </ion-col>
     <ion-col col-8>
-
+      <h1 class="title">
+        <button type="button" class="btn">ChatOnMap</button>
+      </h1>
     </ion-col>
     <!-- button alarm -->
     <ion-col>
       <button type="button" class="btn btn-alarm">
-        <ion-icon ios="ios-notifications" md="md-notifications"></ion-icon>
+        <ion-icon ios="ios-notifications" md="md-notifications" class="icon">
+          <ion-badge color="primary" class="count">{{alarmCount}}</ion-badge>
+        </ion-icon>
       </button>
     </ion-col>
   </ion-row>
 </ion-grid>
-

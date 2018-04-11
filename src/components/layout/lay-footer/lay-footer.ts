@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavData } from '../../shared/nav/nav-data';
+import { NavData } from '../../../shared/nav/nav-data';
 
 /**
  * Generated class for the LayFooterComponent component.
