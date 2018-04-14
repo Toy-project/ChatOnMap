@@ -3,23 +3,19 @@ import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-<<<<<<< HEAD
+import { LoginPage } from '../pages/login/login';
+
 =======
 import { LoginPage } from '../pages/login/login';
 
->>>>>>> Add signin/singup pages
+>>>>>>> efc2ccb0758ce5d6a9d7bf140c6d43f8202498d6
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
-<<<<<<< HEAD
-  rootPage: any = 'TabsPage';
-=======
   rootPage: any = LoginPage;
->>>>>>> Add signin/singup pages
-
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
