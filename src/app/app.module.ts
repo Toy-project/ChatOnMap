@@ -16,15 +16,20 @@ import { ComponentsModule } from '../components/components.module';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
+import { FindPasswordPage } from '../pages/find-password/find-password';
+import { HomePage } from '../pages/home/home';
 
 //Provider
 import { AuthProvider } from '../providers/auth/auth';
+import { MemberProvider } from '../providers/member/member';
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
-    SignupPage
+    SignupPage,
+    HomePage,
+    FindPasswordPage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,8 @@ import { AuthProvider } from '../providers/auth/auth';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    ComponentsModule
   ],
   bootstrap: [
     IonicApp
@@ -40,13 +46,16 @@ import { AuthProvider } from '../providers/auth/auth';
   entryComponents: [
     MyApp,
     LoginPage,
-    SignupPage
+    SignupPage,
+    HomePage,
+    FindPasswordPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    MemberProvider
   ]
 })
 export class AppModule {}

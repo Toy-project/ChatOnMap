@@ -7,24 +7,35 @@ import firebase from 'firebase';
 @Injectable()
 export class AuthProvider {
 
-  constructor( public afAuth: AngularFireAuth, public toastCtrl: ToastController ) {
+  constructor( public afAuth: AngularFireAuth, public toastCtrl: ToastController) {
+  }
+
+  async isLoginin(): Promise<any> {
+    try {
+      const result = await this.afAuth.authState.subscribe((user) => {
+        if (!user) {
+          return null;
+        }
+      });
+
+      return result;
+    } catch (e) {
+    }
   }
   /**
    * Login Provider
    * @param  {string} email
    * @param  {string} password
    */
-  async login(email:string, password:string):any {
+  async getSession(email:string, password:string): Promise<any> {
     try {
       const result = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
 
       console.log('-----------------------------------------');
-      console.log('result :', result);
+      console.log('this.afAuth.auth.signInWithEmailAndPassword(email, password) :', result);
       console.log('-----------------------------------------');
 
-      if(result) {
-        return result;
-      }
+      return result;
     } catch (e) {
       this.errorToast(e);
     }
@@ -35,45 +46,51 @@ export class AuthProvider {
    * @param  {string} email
    * @param  {string} password
    */
-  async signup(email:string, password:string):any {
+  async signup(email:string, password:string): Promise<any> {
     try {
       const result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
 
       if(result) {
-        console.log('-----------------------------------------');
-        console.log('result :', result);
-        console.log('-----------------------------------------');
-        //Send verification email
         try {
           console.log('-----------------------------------------');
           console.log('firebase.auth().currentUser :', firebase.auth().currentUser);
           console.log('-----------------------------------------');
-          const result = await firebase.auth().currentUser.sendEmailVerification();
-
-          if(result) {
-            console.log('sent email');
-          }
+          //Send verification email
+          await firebase.auth().currentUser.sendEmailVerification();
         } catch (e) {
           this.errorToast(e);
         }
       }
+
+      return result;
     } catch (e) {
       this.errorToast(e);
     }
   }
 
   //Logout
-  async logout():any {
+  async logout(): Promise<any> {
     try {
       const result = await this.afAuth.auth.signOut();
 
       console.log('-----------------------------------------');
-      console.log('result :', result);
+      console.log('this.afAuth.auth.signOut(); :', result);
       console.log('-----------------------------------------');
 
-      if(result) {
-        return result;
-      }
+      return result;
+    } catch (e) {
+      this.errorToast(e);
+    }
+  }
+
+  /**
+   * 비밀번호 재설정 이메일 보내기
+   * @param  {string} email 이메일 주소
+   */
+  async setNewPasswordByEmail(email: string): Promise<any> {
+    try {
+      //비밀번호 재설정하는 이메일 보내기
+      await firebase.auth().sendPasswordResetEmail(email);
     } catch (e) {
       this.errorToast(e);
     }
@@ -83,11 +100,8 @@ export class AuthProvider {
    * Error Toast Message
    * @param  {string} code 에러 코드
    */
-  errorToast( error:string ):void {
-    console.log('-----------------------------------------');
-    console.log('code :', error.message);
-    console.log('-----------------------------------------');
-    let msg:string;
+  errorToast( error: any ):void {
+    let msg: string;
 
     switch(error.code) {
         case 'auth/invalid-email': msg = '이메일 주소를 다시 한 번 확인해주세요.'; break;
