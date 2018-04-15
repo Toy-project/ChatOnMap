@@ -28,7 +28,7 @@ export class FindPasswordPage {
     console.log('-----------------------------------------');
     try {
       const email = this.findPasswordForm.controls['email'].value;
-      const result = await this.authProvider.findPassword(email);
+      const result = await this.authProvider.setNewPasswordByEmail(email);
     } catch (e) {
       //error
     }

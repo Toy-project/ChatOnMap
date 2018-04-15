@@ -19,6 +19,10 @@
       <ion-label floating>비밀번호 확인</ion-label>
       <ion-input type="password" formControlName="password_confirm"></ion-input>
     </ion-item>
+
+    <p>{{signUpForm.controls['password'].hasError('pattern')}}</p>
+
+    <p *ngIf="signUpForm.controls['password'].hasError('pattern') && signUpForm.controls['password'].touched">Error!</p>
     <!-- <div class="error" *ngIf="signUpForm.controls['password_confirm'].hasError('equalTo') && signUpForm.controls['password_confirm'].touched">
       비밀번호가 올바르지 않습니다.
     </div> -->

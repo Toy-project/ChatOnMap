@@ -23,7 +23,7 @@ export class SignupPage {
     this.signUpForm = this.formBuilder.group({
       'name': ['', Validators.compose([Validators.required])],
       'email': ['', Validators.compose([Validators.required, Validators.email])],
-      'password': ['', Validators.compose([Validators.required, Validators.minLength(8)])],
+      'password': ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.pattern(/^[1-9]{3}[1-9]{3,4}[1-9]{4}$/)])],
       'password_confirm': ['', Validators.compose([Validators.required, Validators.minLength(8), this.equalto('password')])]
     });
   }
