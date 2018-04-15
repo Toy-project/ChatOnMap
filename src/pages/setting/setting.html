@@ -1,0 +1,37 @@
+<!-- header -->
+<ion-header class="app-header">
+  <lay-header></lay-header>
+</ion-header>
+
+<!-- contents -->
+<ion-content>
+  <!-- setting -->
+  <ion-item-group class="setting-list">
+    <ion-item-divider>Settings</ion-item-divider>
+    <ion-item>
+      <ion-label>로그인 유지</ion-label>
+      <ion-toggle [(ngModel)]="setting.keepLogin" (ngModelChange)="settingChagne(setting)"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>알람 허용</ion-label>
+      <ion-toggle [(ngModel)]="setting.pushAlarm" (ngModelChange)="settingChagne(setting)"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>알람 시간</ion-label>
+      <ion-datetime [disabled]="!setting.pushAlarm" displayFormat="{{datePicker.displayFormat}}" pickerFormat="{{datePicker.pickerFormat}}" hourValues="{{datePicker.hourValues}}" minuteValues="{{datePicker.minuteValues}}" cancelText="{{datePicker.cancelText}}" doneText="{{datePicker.doneText}}" [(ngModel)]="setting.pushAlarmClock" (ngModelChange)="settingChagne(setting)"></ion-datetime>
+    </ion-item>
+  </ion-item-group>
+  <!-- about app -->
+  <ion-item-group class="setting-list">
+    <ion-item-divider>About App</ion-item-divider>
+    <button ion-item>튜토리얼 <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon></button>
+    <button ion-item>이용약관 <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon></button>
+    <button ion-item>버전정보 <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon></button>
+  </ion-item-group>
+  <!-- contact -->
+  <section class="setting-contact">
+    <p class="contact-message">우리들에게<br>이야기를 나눠주세요</p>
+    <ion-icon ios="ios-mail" md="md-mail"></ion-icon>
+    <p class="contact-email">toyprojectgroup@gmail.com</p>
+  </section>
+</ion-content>

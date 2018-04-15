@@ -3,6 +3,8 @@
 //
 
 .app-tabs {
+  background-color: color('white');
+
   &.tabs-md,
   &.tabs-ios {
     .tabbar {

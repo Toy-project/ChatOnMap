@@ -1,22 +1,25 @@
 import { Component } from '@angular/core';
 
-/**
- * Generated class for the MyFriendsComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'my-friends',
   templateUrl: 'my-friends.html'
 })
 export class MyFriendsComponent {
 
-  text: string;
+  // set friends data
+  public friendsData: Array<any> = [
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
+  ];
 
-  constructor() {
-    console.log('Hello MyFriendsComponent Component');
-    this.text = 'Hello World';
-  }
+  constructor(
+  
+  ) { }
 
 }

@@ -1,22 +1,47 @@
 import { Component } from '@angular/core';
 
-/**
- * Generated class for the MyActivityComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'my-activity',
   templateUrl: 'my-activity.html'
 })
 export class MyActivityComponent {
 
-  text: string;
+  // set activity data
+  public activityData: Array<any> = [
+    {
+      type: 'write',
+      date: 1523628561568,
+      place: '홍대',
+    },
+    {
+      type: 'friend',
+      date: 1523628561568,
+      name: '나야나',
+      uid: ''
+    },
+    {
+      type: 'share',
+      date: 1523628561568,
+      name: '나야나',
+      uid: ''
+    },
+    {
+      type: 'info',
+      date: 1523628561568,
+      message: 'password'
+    },
+    {
+      type: 'info',
+      date: 1523628561568,
+      message: 'photo'
+    },
+    {
+      type: 'info',
+      date: 1523628561568,
+      message: 'profile'
+    }
+  ];
 
-  constructor() {
-    console.log('Hello MyActivityComponent Component');
-    this.text = 'Hello World';
-  }
+  constructor() { }
 
 }

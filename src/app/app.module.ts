@@ -10,8 +10,12 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { environment } from '../environments/environment';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { MyApp } from './app.component';
 
+import { Camera } from '@ionic-native/camera';
+import { ImagePicker } from '@ionic-native/image-picker';
 import { AuthProvider } from '../providers/auth/auth';
 
 @NgModule({
@@ -24,7 +28,8 @@ import { AuthProvider } from '../providers/auth/auth';
     AngularFireModule.initializeApp(environment.firebase, 'ChatOnMap'),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    ReactiveFormsModule
   ],
   bootstrap: [
     IonicApp
@@ -36,6 +41,8 @@ import { AuthProvider } from '../providers/auth/auth';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Camera,
+    ImagePicker,
     AuthProvider
   ]
 })

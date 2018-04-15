@@ -10,15 +10,19 @@ import { TabsData } from '../../shared/tabs/tabs-data';
 })
 export class TabsPage {
 
+  // set tab data
   public tabsData: Array<any> = TabsData;
+  public selectedIndex: number;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams
-  ) { }
+  ) {
+    this.selectedIndex = navParams.data.tabIndex || 0;
+  }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TabsPage');
+
   }
 
 }

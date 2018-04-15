@@ -5,8 +5,19 @@
 
 <!-- contents -->
 <ion-content class="app-contents">
+  <!-- user -->
+  <section class="mypage-info">
+    <div class="info-inner">
+      <label class="info-photo" (click)="presentActionSheet()">
+        <ion-img src="{{user.photo}}" alt="{{user.name}} photo"></ion-img>
+        <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
+      </label>
+      <p class="info-name">{{user.name}}</p>
+      <span class="info-create">{{user.createdAt | date: "yyyy.MM.dd"}}</span>
+    </div>
+  </section>
   <!-- segment -->
-  <ion-segment [(ngModel)]="mypage">
+  <ion-segment [(ngModel)]="mypageSegment" class="mypage-segment">
     <ion-segment-button value="friends">
       Friends
     </ion-segment-button>
@@ -18,7 +29,7 @@
     </ion-segment-button>
   </ion-segment>
   <!-- components -->
-  <section [ngSwitch]="mypage">
+  <section [ngSwitch]="mypageSegment" class="mypage-contents">
     <my-friends *ngSwitchCase="'friends'"></my-friends>
     <my-activity *ngSwitchCase="'activity'"></my-activity>
     <my-profile *ngSwitchCase="'profile'"></my-profile>

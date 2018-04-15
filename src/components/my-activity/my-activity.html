@@ -1,4 +1,25 @@
-<!-- Generated template for the MyActivityComponent component -->
-<div>
-  {{text}} activity
-</div>
+<!-- activity list -->
+<ul class="mypage-activity">
+  <li *ngFor="let activity of activityData; let ind = index;" [ngSwitch]="activity.type">
+    <div *ngSwitchCase="'write'">
+      <span class="activity-date">{{activity.date | date: "yyyy.MM.dd h:mm a"}}</span>
+      <p class="activity-message">{{activity.place}}에서 추억 하나를 남겼습니다.</p>
+    </div>
+    <div *ngSwitchCase="'friend'">
+      <span class="activity-date">{{activity.date | date: "yyyy.MM.dd h:mm a"}}</span>
+      <p class="activity-message"><a href="#">{{activity.name}}</a>님과 추억을 공유하는 친구가 되었습니다.</p>
+    </div>
+    <div *ngSwitchCase="'share'">
+      <span class="activity-date">{{activity.date | date: "yyyy.MM.dd h:mm a"}}</span>
+      <p class="activity-message"><a href="#">{{activity.name}}</a>님이 추억을 공유하였습니다.</p>
+    </div>
+    <div *ngSwitchCase="'info'">
+      <span class="activity-date">{{activity.date | date: "yyyy.MM.dd h:mm a"}}</span>
+      <p class="activity-message" [ngSwitch]="activity.message">
+        <span *ngSwitchCase="'password'">비밀번호를 변경하였습니다.</span>
+        <span *ngSwitchCase="'photo'">프로필사진을 변경하였습니다.</span>
+        <span *ngSwitchCase="'profile'">정보를 변경하였습니다.</span>
+      </p>
+    </div>
+  </li>
+</ul>
