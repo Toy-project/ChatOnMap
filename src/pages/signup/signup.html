@@ -1,0 +1,32 @@
+<ion-content padding>
+  <form [formGroup]="signUpForm" (ngSubmit)="signup()">
+    <ion-item>
+      <ion-label floating>이름</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>이메일 주소</ion-label>
+      <ion-input type="text" formControlName='email'></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>비밀번호</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>비밀번호 확인</ion-label>
+      <ion-input type="password" formControlName="password_confirm"></ion-input>
+    </ion-item>
+
+    <p>{{signUpForm.controls['password'].hasError('pattern')}}</p>
+
+    <p *ngIf="signUpForm.controls['password'].hasError('pattern') && signUpForm.controls['password'].touched">Error!</p>
+    <!-- <div class="error" *ngIf="signUpForm.controls['password_confirm'].hasError('equalTo') && signUpForm.controls['password_confirm'].touched">
+      비밀번호가 올바르지 않습니다.
+    </div> -->
+
+    <button type="submit" ion-button color="light" full [disabled]="!signUpForm.valid">회원가입</button>
+  </form>
+</ion-content>

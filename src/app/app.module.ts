@@ -10,34 +10,53 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { environment } from '../environments/environment';
 
-import { MyApp } from './app.component';
+import { ComponentsModule } from '../components/components.module';
 
+//Page
+import { MyApp } from './app.component';
+import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+import { FindPasswordPage } from '../pages/find-password/find-password';
+import { HomePage } from '../pages/home/home';
+
+//Provider
 import { AuthProvider } from '../providers/auth/auth';
+import { MemberProvider } from '../providers/member/member';
 
 
 @NgModule({
   declarations: [
     MyApp,
+    LoginPage,
+    SignupPage,
+    HomePage,
+    FindPasswordPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(environment.firebase, 'ChatOnMap'),
-    AngularFirestoreModule, 
+    AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    ComponentsModule
   ],
   bootstrap: [
     IonicApp
   ],
   entryComponents: [
     MyApp,
+    LoginPage,
+    SignupPage,
+    HomePage,
+    FindPasswordPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    MemberProvider
   ]
 })
 export class AppModule {}
