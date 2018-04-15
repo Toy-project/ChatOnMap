@@ -14,15 +14,16 @@ import { MyApp } from './app.component';
 
 import { AuthProvider } from '../providers/auth/auth';
 
+
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(environment.firebase, 'ChatOnMap'),
-    AngularFirestoreModule,
+    AngularFirestoreModule, 
     AngularFireAuthModule,
     AngularFireStorageModule
   ],
@@ -30,7 +31,7 @@ import { AuthProvider } from '../providers/auth/auth';
     IonicApp
   ],
   entryComponents: [
-    MyApp
+    MyApp,
   ],
   providers: [
     StatusBar,

@@ -6,7 +6,7 @@
     </ion-col>
     <!-- button alarm -->
     <ion-col col-2>
-      <button type="button" class="btn btn-alarm">
+      <button type="button" class="btn btn-alarm" (click)="gotoAlram()">
         <ion-icon ios="ios-notifications" md="md-notifications" class="icon">
           <ion-badge color="primary" class="count">{{alarmCount}}</ion-badge>
         </ion-icon>
