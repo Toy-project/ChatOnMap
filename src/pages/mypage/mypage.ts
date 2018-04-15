@@ -3,10 +3,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html',
+  selector: 'page-mypage',
+  templateUrl: 'mypage.html',
 })
-export class HomePage {
+export class MypagePage {
+
+  public mypage: string = 'friends';
 
   constructor(
     public navCtrl: NavController,
@@ -14,7 +16,7 @@ export class HomePage {
   ) { }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
+
   }
 
 }

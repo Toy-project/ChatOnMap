@@ -1,4 +1,21 @@
-<!-- Generated template for the LayHeaderComponent component -->
-<div>
-  {{text}}
-</div>
+<!-- header -->
+<ion-grid no-padding>
+  <ion-row>
+    <ion-col>
+      <h1 class="title">ChatOnMap</h1>
+    </ion-col>
+    <!-- button alarm -->
+    <ion-col col-2>
+      <button type="button" class="btn btn-alarm">
+        <ion-icon ios="ios-notifications" md="md-notifications" class="icon">
+          <ion-badge color="primary" class="count">{{alarmCount}}</ion-badge>
+        </ion-icon>
+      </button>
+    </ion-col>
+    <ion-col col-2>
+      <button type="button" class="btn btn-write">
+        <ion-icon ios="ios-add" md="md-add" class="icon"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
