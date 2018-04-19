@@ -5,22 +5,19 @@
 
 <!-- contents -->
 <ion-content class="app-contents">
+  <!-- search -->
+  <ion-searchbar (ionInput)="searchFriends($event)"></ion-searchbar>
+  
   <!-- friends list -->
-  <ion-list class="friends">
-    <ion-item-sliding *ngFor="let friend of friendsData; let ind = index;">
-      <!-- item -->
-      <ion-item>
-        <ion-avatar item-start>
-          <ion-img src="{{friend.photo}}" alt="{{friend.name}} photo"></ion-img>
-        </ion-avatar>
-        <h2><a href="#">{{friend.name}}</a></h2>
-      </ion-item>
-      <!-- button -->
-      <ion-item-options side="right">
-        <button ion-button color="primary">
-          <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
+  <ion-list class="list-friend">
+    <ion-item *ngFor="let friend of friendsData; let ind = index;">
+      <ion-avatar item-start>
+        <ion-img src="{{friend.photo}}" alt="{{friend.name}} photo"></ion-img>
+      </ion-avatar>
+      <ion-label><a href="#">{{friend.name}}</a></ion-label>
+      <!--
+      <ion-checkbox color="dark" checked="true" item-end></ion-checkbox>
+      -->
+    </ion-item>
   </ion-list>
 </ion-content>

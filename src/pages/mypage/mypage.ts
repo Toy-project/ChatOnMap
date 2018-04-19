@@ -18,6 +18,38 @@ export class MypagePage {
       name: '나야나',
       photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
     },
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
   ];
 
   constructor(
@@ -27,6 +59,12 @@ export class MypagePage {
 
   ionViewDidLoad() {
 
+  }
+
+  public searchFriends(event): void {
+    // value
+    let val = event.target.value;
+    console.log(val);
   }
 
 }
