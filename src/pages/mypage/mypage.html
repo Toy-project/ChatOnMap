@@ -5,33 +5,22 @@
 
 <!-- contents -->
 <ion-content class="app-contents">
-  <!-- user -->
-  <section class="mypage-info">
-    <div class="info-inner">
-      <label class="info-photo" (click)="presentActionSheet()">
-        <ion-img src="{{user.photo}}" alt="{{user.name}} photo"></ion-img>
-        <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
-      </label>
-      <p class="info-name">{{user.name}}</p>
-      <span class="info-create">{{user.createdAt | date: "yyyy.MM.dd"}}</span>
-    </div>
-  </section>
-  <!-- segment -->
-  <ion-segment [(ngModel)]="mypageSegment" class="mypage-segment">
-    <ion-segment-button value="friends">
-      Friends
-    </ion-segment-button>
-    <ion-segment-button value="activity">
-      Activity
-    </ion-segment-button>
-    <ion-segment-button value="profile">
-      Profile
-    </ion-segment-button>
-  </ion-segment>
-  <!-- components -->
-  <section [ngSwitch]="mypageSegment" class="mypage-contents">
-    <my-friends *ngSwitchCase="'friends'"></my-friends>
-    <my-activity *ngSwitchCase="'activity'"></my-activity>
-    <my-profile *ngSwitchCase="'profile'"></my-profile>
-  </section>
+  <!-- friends list -->
+  <ion-list class="friends">
+    <ion-item-sliding *ngFor="let friend of friendsData; let ind = index;">
+      <!-- item -->
+      <ion-item>
+        <ion-avatar item-start>
+          <ion-img src="{{friend.photo}}" alt="{{friend.name}} photo"></ion-img>
+        </ion-avatar>
+        <h2><a href="#">{{friend.name}}</a></h2>
+      </ion-item>
+      <!-- button -->
+      <ion-item-options side="right">
+        <button ion-button color="primary">
+          <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
