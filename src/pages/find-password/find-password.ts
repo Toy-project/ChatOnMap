@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { AlertController } from 'ionic-angular';
+
 //providers
 import { AuthProvider } from '../../providers/auth/auth';
 
@@ -15,22 +17,20 @@ export class FindPasswordPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public authProvider:AuthProvider,
-              private formBuilder:FormBuilder) {
+              private formBuilder:FormBuilder,
+              public alertCtrl: AlertController) {
     this.findPasswordForm = this.formBuilder.group({
-      'name': [''],
-      'email': ['']
+      'name': ['', Validators.compose([Validators.required])],
+      'email': ['', Validators.compose([Validators.required, Validators.email])],
     });
   }
 
   async findPassword(): Promise<any> {
-    console.log('-----------------------------------------');
-    console.log('findPassword :');
-    console.log('-----------------------------------------');
     try {
       const email = this.findPasswordForm.controls['email'].value;
-      const result = await this.authProvider.setNewPasswordByEmail(email);
+      await this.authProvider.setNewPasswordByEmail(email);
     } catch (e) {
-      //error
+      throw e;
     }
   }
 

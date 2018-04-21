@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 
-import { ToastController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import firebase from 'firebase';
 
 @Injectable()
 export class AuthProvider {
 
-  constructor( public afAuth: AngularFireAuth, public toastCtrl: ToastController) {
+  constructor( public afAuth: AngularFireAuth, public alertCtrl: AlertController) {
   }
 
   async isLoginin(): Promise<any> {
@@ -20,6 +20,7 @@ export class AuthProvider {
 
       return result;
     } catch (e) {
+      throw e;
     }
   }
   /**
@@ -37,34 +38,7 @@ export class AuthProvider {
 
       return result;
     } catch (e) {
-      this.errorToast(e);
-    }
-  }
-
-  /**
-   * Register Provider
-   * @param  {string} email
-   * @param  {string} password
-   */
-  async signup(email:string, password:string): Promise<any> {
-    try {
-      const result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
-
-      if(result) {
-        try {
-          console.log('-----------------------------------------');
-          console.log('firebase.auth().currentUser :', firebase.auth().currentUser);
-          console.log('-----------------------------------------');
-          //Send verification email
-          await firebase.auth().currentUser.sendEmailVerification();
-        } catch (e) {
-          this.errorToast(e);
-        }
-      }
-
-      return result;
-    } catch (e) {
-      this.errorToast(e);
+      throw e;
     }
   }
 
@@ -79,7 +53,7 @@ export class AuthProvider {
 
       return result;
     } catch (e) {
-      this.errorToast(e);
+      throw e;
     }
   }
 
@@ -92,30 +66,8 @@ export class AuthProvider {
       //비밀번호 재설정하는 이메일 보내기
       await firebase.auth().sendPasswordResetEmail(email);
     } catch (e) {
-      this.errorToast(e);
+      throw e;
     }
-  }
-
-  /**
-   * Error Toast Message
-   * @param  {string} code 에러 코드
-   */
-  errorToast( error: any ):void {
-    let msg: string;
-
-    switch(error.code) {
-        case 'auth/invalid-email': msg = '이메일 주소를 다시 한 번 확인해주세요.'; break;
-        case 'auth/wrong-password': msg = '비밀번호를 다시 한 번 확인해주세요.'; break;
-        case 'auth/user-not-found': msg = '회원가입을 하신 후 이용해주세요.'; break;
-        case 'email-already-in-use': msg = '현재 가입된 정보가 있습니다.'; break;
-        default: msg = error.message; break;
-    }
-
-    let toast = this.toastCtrl.create({
-      message: msg,
-      duration: 3000
-    });
-    toast.present();
   }
 
 }

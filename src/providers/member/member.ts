@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import firebase from 'firebase';
@@ -38,7 +37,7 @@ export class MemberProvider {
           //Send verification email
           await firebase.auth().currentUser.sendEmailVerification();
         } catch (e) {
-          // this.errorToast(e);
+          return e;
         }
       }
 
@@ -47,7 +46,8 @@ export class MemberProvider {
       console.log('-----------------------------------------');
       console.log('e :', e);
       console.log('-----------------------------------------');
-      // this.errorToast(e);
+
+      return e;
     }
   }
 

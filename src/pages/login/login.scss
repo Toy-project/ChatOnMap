@@ -1,3 +1,11 @@
 page-login {
+  ion-content {
+    p {
+      color: map-get($colors, 'white');
+    }
 
+    p.text-right.cursor {
+      margin-bottom: $font-size-base * 1.5;
+    }
+  }
 }

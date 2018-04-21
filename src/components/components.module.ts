@@ -5,13 +5,15 @@ import { LayHeaderComponent } from './lay-header/lay-header';
 import { MyFriendsComponent } from './my-friends/my-friends';
 import { MyActivityComponent } from './my-activity/my-activity';
 import { MyProfileComponent } from './my-profile/my-profile';
+import { LoginHeaderComponent } from './login-header/login-header';
 
 @NgModule({
 	declarations: [
 		LayHeaderComponent,
 		MyFriendsComponent,
 		MyActivityComponent,
-		MyProfileComponent
+		MyProfileComponent,
+    LoginHeaderComponent
 	],
 	imports: [
 		IonicModule
@@ -20,7 +22,8 @@ import { MyProfileComponent } from './my-profile/my-profile';
 		LayHeaderComponent,
 		MyFriendsComponent,
 		MyActivityComponent,
-		MyProfileComponent
+		MyProfileComponent,
+    LoginHeaderComponent
 	]
 })
 export class ComponentsModule {}
