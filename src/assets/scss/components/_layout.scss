@@ -1,3 +1,21 @@
 //
 // Layout
 //
+.text-right { text-align:right; }
+.center { text-align:center; }
+
+.login-page-background-color {
+  background-color: map-get($colors, 'blue-light');
+}
+
+ion-item.item-md {
+  margin-bottom: $font-size-base * .25;
+}
+
+//Grid를 이용한 중앙정렬..
+.vertical-align-content > *
+{
+     display: flex!important;
+     align-content: center!important;
+     align-items: center!important;
+}
