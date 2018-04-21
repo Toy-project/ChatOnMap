@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { TabsData } from '../../shared/tabs/tabs-data';
+
 @IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html',
+  selector: 'page-tabs',
+  templateUrl: 'tabs.html',
 })
-export class HomePage {
+export class TabsPage {
+
+  public tabsData: Array<any> = TabsData;
 
   constructor(
     public navCtrl: NavController,
@@ -14,7 +18,7 @@ export class HomePage {
   ) { }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
+    console.log('ionViewDidLoad TabsPage');
   }
 
 }

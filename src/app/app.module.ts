@@ -12,19 +12,29 @@ import { environment } from '../environments/environment';
 
 import { ComponentsModule } from '../components/components.module';
 
+//Page
 import { MyApp } from './app.component';
+import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+import { FindPasswordPage } from '../pages/find-password/find-password';
 import { HomePage } from '../pages/home/home';
+
+//Provider
 import { AuthProvider } from '../providers/auth/auth';
+import { MemberProvider } from '../providers/member/member';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    LoginPage,
+    SignupPage,
+    HomePage,
+    FindPasswordPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(environment.firebase, 'ChatOnMap'),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
@@ -35,13 +45,17 @@ import { AuthProvider } from '../providers/auth/auth';
   ],
   entryComponents: [
     MyApp,
-    HomePage
+    LoginPage,
+    SignupPage,
+    HomePage,
+    FindPasswordPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    MemberProvider
   ]
 })
 export class AppModule {}

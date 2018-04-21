@@ -1,0 +1,4 @@
+<!-- tabs -->
+<ion-tabs class="app-tabs">
+  <ion-tab *ngFor="let tab of tabsData; let ind = index;" [root]="tab.root" tabIcon="{{tab.icon}}" tabUrlPath="{{tab.path}}"></ion-tab>
+</ion-tabs>
