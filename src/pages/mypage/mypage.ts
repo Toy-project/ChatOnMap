@@ -8,7 +8,49 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MypagePage {
 
-  public mypage: string = 'friends';
+  // set friends data
+  public friendsData: Array<any> = [
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
+    {
+      name: '나야나',
+      photo: 'https://cdn.pixabay.com/photo/2017/11/09/16/29/portraits-2934006_1280.jpg'
+    },
+  ];
 
   constructor(
     public navCtrl: NavController,
@@ -17,6 +59,12 @@ export class MypagePage {
 
   ionViewDidLoad() {
 
+  }
+
+  public searchFriends(event): void {
+    // value
+    let val = event.target.value;
+    console.log(val);
   }
 
 }

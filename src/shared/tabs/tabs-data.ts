@@ -7,12 +7,12 @@ export const TabsData: TabsOptions[] = [
     path: 'home'
   },
   {
-    root: 'MypagePage',
+    root: 'MapPage',
     icon: 'pin',
     path: 'map'
   },
   {
-    root: 'MypagePage',
+    root: 'LibraryPage',
     icon: 'apps',
     path: 'library'
   },
@@ -22,7 +22,7 @@ export const TabsData: TabsOptions[] = [
     path: 'mypage'
   },
   {
-    root: 'MypagePage',
+    root: 'SettingPage',
     icon: 'settings',
     path: 'setting'
   }

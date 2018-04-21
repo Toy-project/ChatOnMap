@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 })
 export class LayHeaderComponent {
 
+  // set alarm count
   public alarmCount: number = 0;
 
   constructor() { }

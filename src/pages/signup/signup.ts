@@ -4,9 +4,6 @@ import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from
 
 import { MemberProvider } from '../../providers/member/member';
 
-//pages
-import { LoginPage } from '../login/login';
-
 @IonicPage()
 @Component({
   selector: 'page-signup',
@@ -39,7 +36,7 @@ export class SignupPage {
 
       // 회원가입 시 로그인 페이지로 이동
       if(result) {
-        this.nav.push(LoginPage);
+        this.nav.push('LoginPage');
       }
     } catch (e) {
       console.log(e);

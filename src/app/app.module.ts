@@ -10,50 +10,41 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { environment } from '../environments/environment';
 
-import { ComponentsModule } from '../components/components.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
-//Page
 import { MyApp } from './app.component';
-import { LoginPage } from '../pages/login/login';
-import { SignupPage } from '../pages/signup/signup';
-import { FindPasswordPage } from '../pages/find-password/find-password';
-import { HomePage } from '../pages/home/home';
 
-//Provider
+import { Camera } from '@ionic-native/camera';
+import { ImagePicker } from '@ionic-native/image-picker';
+
 import { AuthProvider } from '../providers/auth/auth';
 import { MemberProvider } from '../providers/member/member';
 
 @NgModule({
   declarations: [
-    MyApp,
-    LoginPage,
-    SignupPage,
-    HomePage,
-    FindPasswordPage
+    MyApp
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase, 'ChatOnMap'),
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    ComponentsModule
+    ReactiveFormsModule
   ],
   bootstrap: [
     IonicApp
   ],
   entryComponents: [
-    MyApp,
-    LoginPage,
-    SignupPage,
-    HomePage,
-    FindPasswordPage
+    MyApp
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Camera,
+    ImagePicker,
     AuthProvider,
     MemberProvider
   ]

@@ -3,19 +3,14 @@ import { IonicPage, NavController } from 'ionic-angular';
 
 import { AuthProvider } from '../../providers/auth/auth';
 
-//Page
-import { SignupPage } from '../signup/signup';
-import { HomePage } from '../home/home';
-import { FindPasswordPage } from '../find-password/find-password';
-
 @IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  signupPage: any = SignupPage;
-  findPasswordPage: any = FindPasswordPage;
+  signupPage: any = 'SignupPage';
+  findPasswordPage: any = 'FindPasswordPage';
   constructor( public authProvider: AuthProvider, public nav: NavController ) {
   }
 
@@ -34,7 +29,7 @@ export class LoginPage {
       console.log('-----------------------------------------');
       //인증이 안된 계정이면 이메일 확인 페이지로 이동
       if(emailVerified) {
-        this.nav.push(HomePage);
+        this.nav.push('HomePage');
       } else {
         //To do
       }
