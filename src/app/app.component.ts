@@ -9,7 +9,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = 'LoginPage';
+  rootPage: any = 'TabsPage';
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -19,3 +19,4 @@ export class MyApp {
     });
   }
 }
+ 

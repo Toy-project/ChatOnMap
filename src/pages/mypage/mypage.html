@@ -12,7 +12,7 @@
   <ion-list class="list-friend">
     <ion-item *ngFor="let friend of friendsData; let ind = index;">
       <ion-avatar item-start>
-        <ion-img src="{{friend.photo}}" alt="{{friend.name}} photo"></ion-img>
+        <ion-img src="{{friend.photoURL}}" alt="{{friend.name}} photo"></ion-img>
       </ion-avatar>
       <ion-label><a href="#">{{friend.name}}</a></ion-label>
       <!--

@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
-import firebase from 'firebase';
+import { AngularFireStorage } from 'angularfire2/storage';
 
 @Injectable()
 export class MemberProvider {
-  userCollection: AngularFirestoreCollection<any>;
-  constructor(public afStore: AngularFirestore, public afAuth: AngularFireAuth) {
-    this.userCollection = this.afStore.collection('users');
+
+  memberCollection: AngularFirestoreCollection<any>;
+
+  constructor(
+    public afStore: AngularFirestore,
+    public afAuth: AngularFireAuth,
+    public afStorage: AngularFireStorage,
+  ) {
+    this.memberCollection = this.afStore.collection('member');
   }
 
   /**
@@ -25,7 +31,7 @@ export class MemberProvider {
       const result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
 
       //이름과 이메일을 저장소에 저장(이메일이 고유키)
-      await this.userCollection.doc(email).set({
+      await this.memberCollection.doc(email).set({
         'name': name
       });
 
@@ -48,6 +54,33 @@ export class MemberProvider {
       console.log('-----------------------------------------');
 
       return e;
+    }
+  }
+
+  /**
+   * Get Friends
+   * @param  {string} uid
+   */
+  async getFriends(uid: string): Promise<any> {
+    try {
+      // firend document
+      const doc = await this.afStore.firestore.collection('friend').doc(uid).get();
+      
+      // document 존재 여부에 따른 분기
+      if (!doc.exists) {
+        // todo
+      } else {
+        let firends: Array<any> = [];
+        await Promise.all(
+          doc.data().uid.map(async (uid) => {
+            const member = await this.afStore.firestore.collection('member').doc(uid).get();
+            firends.push(member.data());
+          })
+        )
+        return firends;
+      }
+    } catch(err) {
+      console.log(err);
     }
   }
 
