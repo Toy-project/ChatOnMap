@@ -58,6 +58,26 @@ export class MemberProvider {
   }
 
   /**
+   * Get Member
+   * @param  {string} uid
+   */
+   async getMember(uid: string): Promise<any> {
+     try {
+      // member document 
+      const doc = await this.afStore.firestore.collection('member').doc(uid).get();
+      
+      // document 존재 여부에 따른 분기
+      if(!doc.exists) {
+        // todo
+      } else {
+        return Object.assign({uid: uid}, doc.data());
+      }
+     } catch(err) {
+      console.log(err);
+     }
+   }
+
+  /**
    * Get Friends
    * @param  {string} uid
    */
@@ -77,7 +97,8 @@ export class MemberProvider {
             firends.push(member.data());
           })
         )
-        return firends;
+        // 가나다순 정렬 후 return
+        return firends.sort((a, b) => { return a.name < b.name ? -1 : a.name > b.name ? 1 : 0; });
       }
     } catch(err) {
       console.log(err);

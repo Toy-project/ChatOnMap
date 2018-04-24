@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { MemberProvider } from '../../providers/member/member';
 
@@ -11,11 +12,14 @@ import { MemberProvider } from '../../providers/member/member';
 export class MypagePage {
 
   // set friends data
+  public friends: Array<any> = [];
   public friendsData: Array<any> = [];
 
   constructor(
+    public storage: Storage,
     public navCtrl: NavController,
     public navParams: NavParams,
+    public modalController: ModalController,
     public memberProvider: MemberProvider,
   ) { }
 
@@ -24,13 +28,28 @@ export class MypagePage {
   }
 
   async getFriends() {
-    this.friendsData = await this.memberProvider.getFriends('R13W5kpxaOCEYPXEEneq');
+    const authMember = await this.storage.get('member');
+    this.friends = await this.memberProvider.getFriends(authMember.uid);
+    this.friendsData = this.friends;
   }
 
   searchFriends(event): void {
-    // value
+    // friends set
+    this.friendsData = this.friends;
+    // input value
     let val = event.target.value;
-    console.log(val);
+    // filter event
+    if (val && val.trim() !== '') {
+      this.friendsData = this.friendsData.filter((friend, index, array) => {
+        return friend.name.toLowerCase().includes(val.toLowerCase());
+      });
+    };
+  }
+
+  presentMemberDetailModal(value) {
+    let memberDetailModal = this.modalController.create('MemberDetailPage', value);
+    
+    memberDetailModal.present();
   }
 
 }
