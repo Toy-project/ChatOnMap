@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireStorage } from 'angularfire2/storage';
@@ -9,6 +10,7 @@ export class MemberProvider {
   memberCollection: AngularFirestoreCollection<any>;
 
   constructor(
+    public storage: Storage,
     public afStore: AngularFirestore,
     public afAuth: AngularFireAuth,
     public afStorage: AngularFireStorage,
@@ -84,6 +86,26 @@ export class MemberProvider {
      }
    }
 
+   /**
+   * Search Member By Id
+   * @param  {string} id
+   */
+  async searchMemberById(id: string): Promise<any> {
+    try {
+     // member collection 
+     const collection = await this.afStore.firestore.collection('member').where('id', '==', id).get();
+     
+     // collection 존재 여부에 따른 분기
+     if(collection.docs.length === 0) {
+       return null;
+     } else {
+       return collection.docs[0].data();
+     }
+    } catch(err) {
+     console.log(err);
+    }
+  }
+
   /**
    * Get Friends
    * @param  {string} uid
@@ -93,7 +115,7 @@ export class MemberProvider {
       // firend collection
       const collection = await this.afStore.firestore.collection('member').doc(uid).collection('friend').get();
       
-      // document 존재 여부에 따른 분기
+      // collection 존재 여부에 따른 분기
       if (collection.docs.length === 0) {
         // todo
       } else {
@@ -101,7 +123,7 @@ export class MemberProvider {
         await Promise.all(
           collection.docs.map(async (doc) => {
             const member = await this.afStore.firestore.collection('member').doc(doc.data().uid).get();
-            firends.push(Object.assign({key: member.id}, member.data()));
+            firends.push(Object.assign({key: doc.id}, member.data()));
           })
         )
         // 가나다순 정렬 후 return
@@ -115,13 +137,14 @@ export class MemberProvider {
   /**
    * Add Friend
    * @param  {string} uid
+   * @param  {string} f_uid
    */
-  async addFriend(uid: string): Promise<any> {
+  async addFriend(uid: string, f_uid: string): Promise<any> {
     try {
       // firend collection
       const collection = this.afStore.firestore.collection('member').doc(uid).collection('friend');
       
-      await collection.add({uid: uid});
+      await collection.add({uid: f_uid});
     } catch(err) {
       console.log(err);
     }
@@ -135,9 +158,28 @@ export class MemberProvider {
   async deleteFriend(uid: string, key: string): Promise<any> {
     try {
       // friend doc
-      const doc = this.afStore.firestore.collection('member').doc(uid).collection('friend').doc(key);
+      await this.afStore.firestore.collection('member').doc(uid).collection('friend').doc(key).delete();
+      return true;
+    } catch(err) {
+      console.log(err);
+    }
+  }
 
-      await doc.delete();
+  /**
+   * Delete Friend
+   * @param  {string} uid
+   * @param  {string} f_uid
+   */
+  async existsFriend(uid: string, f_uid: string): Promise<any> {
+    try {
+      // friend collection
+      const collection = await this.afStore.firestore.collection('member').doc(uid).collection('friend').where('uid', '==', f_uid).get();
+
+      if (collection.docs.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
     } catch(err) {
       console.log(err);
     }

@@ -1,0 +1,9 @@
+<!-- profile -->
+<section class="member-detail">
+  <div class="photo">
+    <ion-img src="{{profile.photoURL}}" alt=""></ion-img>
+  </div>
+  <p class="name">{{profile.name}}</p>
+  <time class="createdAt">{{profile.createdAt | date: 'yyyy.MM.dd'}}</time>
+  <button ion-button class="btn btn-add-friend" *ngIf="!friend" (click)="addFriend(profile)">친구 추가</button>
+</section>

@@ -31,6 +31,12 @@
     overflow-y: scroll;
   }
 
+  .item:not(.item-divider) {
+    .label {
+      color: theme-color('primary');
+    }
+  }
+
   .item-wrapper {
     
     &:last-child {

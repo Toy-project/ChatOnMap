@@ -5,12 +5,5 @@
 
 <!-- contents -->
 <ion-content class="app-contents">
-  <section class="member-detail">
-    <div class="photo">
-      <ion-img src="{{data.photoURL}}" alt=""></ion-img>
-    </div>
-    <p class="name">{{data.name}}</p>
-    <time class="createdAt">{{data.createdAt | date: 'yyyy.MM.dd'}}</time>
-    <button ion-button class="btn btn-add-friend" *ngIf="!friend" (click)="addFriend()">친구 추가</button>
-  </section>
+  <member-profile [profile]="profile" [friend]="friend"></member-profile>
 </ion-content>

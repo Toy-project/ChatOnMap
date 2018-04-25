@@ -10,15 +10,16 @@ export class MemberDetailPage {
 
   type: string = 'modal';
   next: any = {};
-  data: any = {};
-  friend: boolean = false; 
+  
+  profile: any = {};
+  friend: boolean = false;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public viewController: ViewController,
   ) {
-    this.data = this.navParams.get('data');
+    this.profile = this.navParams.get('profile');
     this.friend = this.navParams.get('friend');
   }
 
@@ -37,7 +38,5 @@ export class MemberDetailPage {
       // todo
     }
   }
-
-  
 
 }

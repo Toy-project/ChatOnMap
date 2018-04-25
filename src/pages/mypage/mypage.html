@@ -4,25 +4,34 @@
 </ion-header>
 
 <!-- contents -->
-<ion-content class="app-contents">
-  <!-- search -->
-  <ion-searchbar (ionInput)="searchFriends($event)"></ion-searchbar>
-  
+<ion-content class="app-contents">  
   <!-- friends list -->
   <ion-list class="list-friend">
-    <ion-item-sliding *ngFor="let friend of friendsData; let ind = index;">
+    <ion-item-group>
+      <ion-item-divider color="light">내 프로필</ion-item-divider>
       <ion-item>
         <ion-avatar item-start>
-          <ion-img src="{{friend.photoURL}}" alt="{{friend.name}} photo"></ion-img>
+          <ion-img src="{{authMember.photoURL}}" alt="{{authMember.name}} photo"></ion-img>
         </ion-avatar>
-        <ion-label><a href="#" (click)="presentMemberDetailModal(friend)">{{friend.name}}</a></ion-label>
+        <ion-label (click)="presentMemberDetailModal(authMember)">{{authMember.name}}</ion-label>
       </ion-item>
-      <ion-item-options side="right">
-        <button ion-button color="primary">
-          <ion-icon name="trash"></ion-icon>
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
+    </ion-item-group>
+    <ion-item-group>
+      <ion-item-divider color="light">친구</ion-item-divider>
+      <ion-item-sliding *ngFor="let friend of friendsData; let ind = index;">
+        <ion-item>
+          <ion-avatar item-start>
+            <ion-img src="{{friend.photoURL}}" alt="{{friend.name}} photo"></ion-img>
+          </ion-avatar>
+          <ion-label (click)="presentMemberDetailModal(friend)">{{friend.name}}</ion-label>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="primary" (click)="deleteFriend(authMember.uid, friend.key)">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-item-group>
   </ion-list>
 
   <!-- fab button -->

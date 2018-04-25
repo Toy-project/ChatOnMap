@@ -6,10 +6,20 @@
 
 <!-- contents -->
 <ion-content class="app-contents">
-  <form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm.value)" class="form-search">
-    <label>ID로 친구를 찾아보세요.</label>
-    <input type="text" required formControlName="searchText">
-    <button type="submit"></button>
+  <!-- search form -->
+  <form [formGroup]="searchForm" (ngSubmit)="searchMember(searchForm.value)" class="form-search">
+    <label class="label">ID로 친구를 찾아보세요.</label>
+    <input type="search" required formControlName="searchText" class="form-control">
+    <button type="submit" class="btn btn-search"><ion-icon ios="ios-search" md="md-search"></ion-icon></button>
   </form>
-
+  <!-- profile -->
+  <div *ngIf="searchLoading">
+    <div *ngIf="searchLoading && profile">
+      <member-profile [profile]="profile" [friend]="friend" (addFriendEvent)="addFriendEvent($event)"></member-profile>
+    </div>
+    <div class="member-none" *ngIf="searchLoading && !profile">
+      사용자를 찾을 수 없습니다.
+      <small>ID를 다시 확인해주세요.</small>
+    </div>
+  </div>
 </ion-content>

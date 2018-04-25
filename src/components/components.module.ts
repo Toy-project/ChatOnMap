@@ -3,11 +3,13 @@ import { IonicModule } from 'ionic-angular';
 
 import { LayHeaderComponent } from './lay-header/lay-header';
 import { LoginHeaderComponent } from './login-header/login-header';
+import { MemberProfileComponent } from './member-profile/member-profile';
 
 @NgModule({
 	declarations: [
 		LayHeaderComponent,
 		LoginHeaderComponent,
+    MemberProfileComponent,
 	],
 	imports: [
 		IonicModule
@@ -15,6 +17,7 @@ import { LoginHeaderComponent } from './login-header/login-header';
 	exports: [
 		LayHeaderComponent,
 		LoginHeaderComponent,
+    MemberProfileComponent,
 	]
 })
 export class ComponentsModule {}
