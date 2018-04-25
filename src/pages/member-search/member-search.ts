@@ -1,29 +1,40 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
 @IonicPage()
 @Component({
-  selector: 'page-member-detail',
-  templateUrl: 'member-detail.html',
+  selector: 'page-member-search',
+  templateUrl: 'member-search.html',
 })
-export class MemberDetailPage {
+export class MemberSearchPage {
 
   type: string = 'modal';
   next: any = {};
   data: any = {};
   friend: boolean = false; 
 
+  searchForm: FormGroup;
+  searchText: AbstractControl;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public viewController: ViewController,
+    public formBuilder: FormBuilder
   ) {
-    this.data = this.navParams.get('data');
-    this.friend = this.navParams.get('friend');
+    this.createSearchForm();
   }
 
   ionViewDidLoad() {
-    
+
+  }
+
+  createSearchForm() {
+    this.searchForm = this.formBuilder.group({
+      searchText: ['', Validators.compose([Validators.required])],
+    });
+    this.searchText = this.searchForm.controls['searchText'];
   }
 
   /**
@@ -37,7 +48,5 @@ export class MemberDetailPage {
       // todo
     }
   }
-
-  
 
 }

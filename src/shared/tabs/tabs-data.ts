@@ -4,26 +4,31 @@ export const TabsData: TabsOptions[] = [
   {
     root: 'HomePage',
     icon: 'home',
-    path: 'home'
+    path: 'home',
+    show: true
   },
   {
     root: 'MapPage',
     icon: 'pin',
-    path: 'map'
+    path: 'map',
+    show: true
   },
   {
     root: 'LibraryPage',
     icon: 'apps',
-    path: 'library'
+    path: 'library',
+    show: true
   },
   {
     root: 'MypagePage',
     icon: 'person',
-    path: 'mypage'
+    path: 'mypage',
+    show: true
   },
   {
     root: 'SettingPage',
     icon: 'settings',
-    path: 'setting'
+    path: 'setting',
+    show: true
   }
 ];

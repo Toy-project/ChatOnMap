@@ -11,7 +11,7 @@ import { TabsData } from '../../shared/tabs/tabs-data';
 export class TabsPage {
 
   // set tab data
-  public tabsData: Array<any> = TabsData;
+  public tabsData: Array<any> = TabsData.filter((tab) => {return tab.show ? tab : null});
   public selectedIndex: number;
 
   constructor(

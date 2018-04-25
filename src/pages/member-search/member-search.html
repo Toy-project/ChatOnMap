@@ -1,0 +1,15 @@
+<!-- header -->
+<ion-header class="app-header">
+  <lay-header [type]="type" [next]="next" (dismiss)="dismiss($event)"></lay-header>
+</ion-header>
+
+
+<!-- contents -->
+<ion-content class="app-contents">
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm.value)" class="form-search">
+    <label>ID로 친구를 찾아보세요.</label>
+    <input type="text" required formControlName="searchText">
+    <button type="submit"></button>
+  </form>
+
+</ion-content>

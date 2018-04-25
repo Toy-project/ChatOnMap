@@ -3,9 +3,12 @@
   <ion-row>
     <!-- button alarm -->
     <ion-col col-2>
-      <button type="button" class="btn btn-alarm">
+      <button type="button" class="btn btn-alarm" *ngIf="!type">
         <ion-icon ios="ios-notifications" md="md-notifications"></ion-icon>
         <ion-badge color="primary">{{alarmCount}}</ion-badge>
+      </button>
+      <button type="button" class="btn btn-close" *ngIf="type === 'modal'" (click)="closeModal(true)">
+        <ion-icon ios="ios-close" md="md-close"></ion-icon>
       </button>
     </ion-col>
     <!-- title -->
@@ -14,7 +17,7 @@
     </ion-col>
     <!-- button write -->
     <ion-col col-2>
-      <button type="button" class="btn btn-write">
+      <button type="button" class="btn btn-write" *ngIf="!type">
         <ion-icon ios="ios-add" md="md-add"></ion-icon>
       </button>
     </ion-col>

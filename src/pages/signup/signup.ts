@@ -18,6 +18,7 @@ export class SignupPage {
                private formBuilder: FormBuilder ) {
     //form validator
     this.signUpForm = this.formBuilder.group({
+      'id': ['', Validators.compose([Validators.required])],
       'name': ['', Validators.compose([Validators.required])],
       'email': ['', Validators.compose([Validators.required, Validators.email])],
       'password': ['', Validators.compose([Validators.required, Validators.minLength(8)])],
@@ -30,9 +31,9 @@ export class SignupPage {
    * @param  {string} email
    * @param  {string} password
    */
-  async signup(): Promise<any> {
+  async signup(value): Promise<any> {
     try {
-      const result = await this.memberProvider.signup(this.signUpForm);
+      const result = await this.memberProvider.signup(value);
 
       // 회원가입 시 로그인 페이지로 이동
       if(result) {

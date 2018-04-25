@@ -27,6 +27,12 @@ export class MypagePage {
     this.getFriends();
   }
 
+  goFriendAdd() {
+    let memberSearchModal = this.modalController.create('MemberSearchPage');
+
+    memberSearchModal.present();
+  }
+
   async getFriends() {
     const authMember = await this.storage.get('member');
     this.friends = await this.memberProvider.getFriends(authMember.uid);
@@ -47,7 +53,7 @@ export class MypagePage {
   }
 
   presentMemberDetailModal(value) {
-    let memberDetailModal = this.modalController.create('MemberDetailPage', value);
+    let memberDetailModal = this.modalController.create('MemberDetailPage', {data: value, friend: true});
     
     memberDetailModal.present();
   }
