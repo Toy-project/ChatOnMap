@@ -28,7 +28,7 @@ export class MypagePage {
     this.getFriends();
   }
 
-  goFriendAdd(): void {
+  presentMemberSearchModal(): void {
     let memberSearchModal = this.modalController.create('MemberSearchPage');
 
     memberSearchModal.present();
@@ -38,9 +38,21 @@ export class MypagePage {
   }
 
   presentMemberDetailModal(value): void {
-    let memberDetailModal = this.modalController.create('MemberDetailPage', {profile: value, friend: true});
+    let memberDetailModal = this.modalController.create('MemberDetailPage', {
+      profile: value,
+      friend: true,
+      modify: this.authMember.uid === value.uid ? true : false
+    });
     
     memberDetailModal.present();
+  }
+
+  presentMemberListModal(): void {
+    let memberListModal = this.modalController.create('MemberListPage', {
+      list: this.friendsData
+    });
+
+    memberListModal.present();
   }
 
   presentLoading(): void {

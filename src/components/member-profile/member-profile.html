@@ -2,8 +2,14 @@
 <section class="member-detail">
   <div class="photo">
     <ion-img src="{{profile.photoURL}}" alt=""></ion-img>
+    <button type="button" *ngIf="modify" class="btn btn-camera" (click)="presentActionSheet()">
+      <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
+    </button>
   </div>
-  <p class="name">{{profile.name}}</p>
+  <p class="name">
+    {{profile.name}}
+    <button type="button" *ngIf="modify" class="btn btn-modify"><ion-icon ios="ios-create" md="md-create"></ion-icon></button>
+  </p>
   <time class="createdAt">{{profile.createdAt | date: 'yyyy.MM.dd'}}</time>
   <button ion-button class="btn btn-add-friend" *ngIf="!friend" (click)="addFriend(profile)">친구 추가</button>
 </section>

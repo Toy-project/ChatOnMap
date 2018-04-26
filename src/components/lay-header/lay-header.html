@@ -17,8 +17,11 @@
     </ion-col>
     <!-- button write -->
     <ion-col col-2>
-      <button type="button" class="btn btn-write" *ngIf="!type">
+      <button type="button" class="btn btn-write" *ngIf="!type" (click)="presentWriteModal()">
         <ion-icon ios="ios-add" md="md-add"></ion-icon>
+      </button>
+      <button type="button" class="btn btn-check" *ngIf="type && next">
+        <ion-icon ios="ios-{{next.icon}}" md="md-{{next.icon}}"></ion-icon>
       </button>
     </ion-col>
   </ion-row>

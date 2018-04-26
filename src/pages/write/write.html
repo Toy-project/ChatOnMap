@@ -1,0 +1,21 @@
+<!-- header -->
+<ion-header class="app-header">
+  <lay-header [type]="type" [next]="next" (dismiss)="dismiss($event)"></lay-header>
+</ion-header>
+
+<!-- contents -->
+<ion-content class="app-contents">
+  <form class="form-write">
+    <ion-item>
+      <ion-label stacked>추억을 남겨보세요.</ion-label>
+      <ion-textarea placeholder="Enter a description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>소중한 사람과 추억을 공유해보세요.</ion-label>
+      <ion-input type="text" placeholder="" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>순간을 저장해보세요.</ion-label>
+    </ion-item>
+  </form>
+</ion-content>

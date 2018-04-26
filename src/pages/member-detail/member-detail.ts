@@ -9,10 +9,11 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 export class MemberDetailPage {
 
   type: string = 'modal';
-  next: any = {};
+  next: any = null;
   
-  profile: any = {};
-  friend: boolean = false;
+  profile: any = {}; // 프로필 데이터
+  friend: boolean = false; // 친구 여부
+  modify: boolean = false; // 수정 여부
 
   constructor(
     public navCtrl: NavController,
@@ -21,6 +22,7 @@ export class MemberDetailPage {
   ) {
     this.profile = this.navParams.get('profile');
     this.friend = this.navParams.get('friend');
+    this.modify = this.navParams.get('modify');
   }
 
   ionViewDidLoad() {

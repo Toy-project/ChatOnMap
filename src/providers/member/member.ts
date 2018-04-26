@@ -166,7 +166,7 @@ export class MemberProvider {
   }
 
   /**
-   * Delete Friend
+   * Exist Friend
    * @param  {string} uid
    * @param  {string} f_uid
    */

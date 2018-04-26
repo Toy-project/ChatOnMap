@@ -13,7 +13,7 @@ import { MemberProvider } from '../../providers/member/member';
 export class MemberSearchPage {
 
   type: string = 'modal';
-  next: any = {};
+  next: any = null;
 
   profile: any = {};
   friend: boolean;
@@ -72,7 +72,7 @@ export class MemberSearchPage {
       if (this.profile) {
         // 회원이 있는 경우
         const authMember = await this.storage.get('member');
-        this.friend = await this.memberProvider.existsFriend(authMember.uid, this.profile.uid);
+        this.friend = authMember.uid !== this.profile.uid ? await this.memberProvider.existsFriend(authMember.uid, this.profile.uid) : true;
         // loading end
         this.dismissLoading();
         this.searchLoading = true;

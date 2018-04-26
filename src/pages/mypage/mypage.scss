@@ -2,34 +2,8 @@
 // Mypage
 //
 
-.searchbar {
-  &.searchbar-ios  {
-    height: 45px;
-    border-top: 0;
-  }
-
-  &.searchbar-md {
-    height: 55px;
-
-    .searchbar-input {
-      height: 39px;
-    }
-  }
-}
-
 .list-friend {
   margin: 0;
-
-  &.list-ios {
-    margin-bottom: 0;
-    height: calc(100% - 45px);
-    overflow-y: scroll;
-  }
-
-  &.list-md {
-    height: calc(100% - 55px);
-    overflow-y: scroll;
-  }
 
   .item:not(.item-divider) {
     .label {
@@ -46,7 +20,7 @@
     }
 
     .item-block {
-      border: 0;
+      border: 0 !important;
   
       &.item-md {
         margin-bottom: 0;
@@ -84,5 +58,4 @@
       }
     }
   }
-
 }

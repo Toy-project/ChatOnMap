@@ -1,0 +1,20 @@
+<!-- header -->
+<ion-header class="app-header">
+  <lay-header [type]="type" [next]="next" (dismiss)="dismiss($event)"></lay-header>
+</ion-header>
+
+<!-- contents -->
+<ion-content class="app-contents">
+  <!-- friend search -->
+  <ion-searchbar (ionInput)="friendFilter($event)" class="searchbar-friend"></ion-searchbar>
+  <!-- friends list -->
+  <ion-list class="list-friend list-friend-filter">
+    <ion-item *ngFor="let friend of friendsDataFilter; let ind = index;">
+      <ion-avatar item-start>
+        <ion-img src="{{friend.photoURL}}" alt="{{friend.name}} photo"></ion-img>
+      </ion-avatar>
+      <ion-label>{{friend.name}}</ion-label>
+      <ion-checkbox item-end></ion-checkbox>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ViewController } from 'ionic-angular';
+import { ModalController, ViewController, NavController } from 'ionic-angular';
 
 @Component({
   selector: 'lay-header',
@@ -15,8 +15,16 @@ export class LayHeaderComponent {
   @Output() dismiss: any = new EventEmitter<boolean>();
 
   constructor(
-    public viewController: ViewController
+    public viewController: ViewController,
+    public modalController: ModalController,
+    public navController: NavController
   ) { }
+
+  presentWriteModal(): void {
+    let writeModal = this.modalController.create('WritePage');
+
+    writeModal.present();
+  }
 
   /**
    *  Close Modal
