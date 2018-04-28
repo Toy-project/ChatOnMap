@@ -15,8 +15,6 @@ export class LoginHeaderComponent {
   text: string;
 
   constructor() {
-    console.log('Hello LoginHeaderComponent Component');
-    // this.text = 'CHATONMAP';
   }
 
 }

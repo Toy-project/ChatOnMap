@@ -9,26 +9,48 @@
             <ion-item>
               <ion-input type="text" formControlName="id" placeholder="ID"></ion-input>
             </ion-item>
+            <ng-container *ngFor="let validation of validation_messages.id" >
+          		<p class="warning text-right" *ngIf="id.hasError(validation.type) && (id.dirty || id.touched)">
+          	     {{ validation.message }}
+          		</p>
+          	</ng-container>
 
             <ion-item>
               <ion-input type="text" formControlName="name" placeholder="이름"></ion-input>
             </ion-item>
+            <ng-container *ngFor="let validation of validation_messages.name" >
+          		<p class="warning text-right" *ngIf="name.hasError(validation.type) && (name.dirty || name.touched)">
+          	     {{ validation.message }}
+          		</p>
+          	</ng-container>
 
             <ion-item>
               <ion-input type="email" formControlName='email' placeholder="이메일 주소"></ion-input>
             </ion-item>
+            <ng-container *ngFor="let validation of validation_messages.email" >
+          		<p class="warning text-right" *ngIf="email.hasError(validation.type) && (email.dirty || email.touched)">
+          	     {{ validation.message }}
+          		</p>
+          	</ng-container>
 
             <ion-item>
               <ion-input type="password" formControlName="password" placeholder="비밀번호"></ion-input>
             </ion-item>
-            
+            <ng-container *ngFor="let validation of validation_messages.password" >
+          		<p class="warning text-right" *ngIf="password.hasError(validation.type) && (password.dirty || password.touched)">
+          	     {{ validation.message }}
+          		</p>
+          	</ng-container>
+
             <ion-item>
               <ion-input type="password" formControlName="password_confirm" placeholder="비밀번호 확인"></ion-input>
             </ion-item>
-            <div class="error" *ngIf="!signUpForm.controls['password_confirm'].hasError('equalTo') && signUpForm.controls['password_confirm'].touched">
-              비밀번호가 올바르지 않습니다.
-            </div>
+            <p *ngIf="password_confirm.value !== password.value && (password_confirm.dirty || password_confirm.touched)" class='warning text-right'>
+              비밀번호가 일치하지 않습니다.
+            </p>
+
             <br />
+
             <button type="submit" color="dark" ion-button  full [disabled]="!signUpForm.valid">회원가입</button>
           </form>
         </ion-list>

@@ -4,8 +4,6 @@ import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { MemberProvider } from '../providers/member/member';
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -13,13 +11,14 @@ export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
   rootPage: string;
-  
+
   constructor(
     public storage: Storage,
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public memberProvider: MemberProvider,
+    // public memberProvider: MemberProvider,
+    // public aithProvider: AuthProvider
   ) {
     this.setRootPage();
   }
@@ -48,4 +47,3 @@ export class MyApp {
   }
 
 }
- 

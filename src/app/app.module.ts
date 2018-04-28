@@ -20,6 +20,9 @@ import { ImagePicker } from '@ionic-native/image-picker';
 
 import { AuthProvider } from '../providers/auth/auth';
 import { MemberProvider } from '../providers/member/member';
+import * as firebase from 'firebase';
+
+firebase.initializeApp(environment.firebase);
 
 @NgModule({
   declarations: [

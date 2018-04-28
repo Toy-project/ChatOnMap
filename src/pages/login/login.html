@@ -12,10 +12,10 @@
             <ion-item>
               <ion-input type="password" [(ngModel)]="password" placeholder="비밀번호"></ion-input>
             </ion-item>
-            <p class="text-right cursor" [navPush]="findPasswordPage">비밀번호를 잃어버리셨나요?</p>
+            <p class="text-right cursor" (click)="goToFindPasswordPage()">비밀번호를 잃어버리셨나요?</p>
 
             <button ion-button color="dark" (click)="login(email, password)" full>로그인</button>
-            <p class="cursor" [navPush]="signupPage">아직 회원이 아니신가요?</p>
+            <p class="cursor" (click)="goToSignupPage()">아직 회원이 아니신가요?</p>
           </ion-list>
         </ion-col>
     </ion-row>

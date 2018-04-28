@@ -3,6 +3,7 @@ import { Storage } from '@ionic/storage';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireStorage } from 'angularfire2/storage';
+import firebase from 'firebase';
 
 @Injectable()
 export class MemberProvider {
@@ -46,9 +47,6 @@ export class MemberProvider {
 
       if(result) {
         try {
-          console.log('-----------------------------------------');
-          console.log('firebase.auth().currentUser :', firebase.auth().currentUser);
-          console.log('-----------------------------------------');
           //Send verification email
           await firebase.auth().currentUser.sendEmailVerification();
         } catch (e) {
@@ -58,10 +56,6 @@ export class MemberProvider {
 
       return result;
     } catch (e) {
-      console.log('-----------------------------------------');
-      console.log('e :', e);
-      console.log('-----------------------------------------');
-
       return e;
     }
   }
@@ -72,9 +66,9 @@ export class MemberProvider {
    */
    async getMember(uid: string): Promise<any> {
      try {
-      // member document 
+      // member document
       const doc = await this.afStore.firestore.collection('member').doc(uid).get();
-      
+
       // document 존재 여부에 따른 분기
       if(!doc.exists) {
         // todo
@@ -92,9 +86,9 @@ export class MemberProvider {
    */
   async searchMemberById(id: string): Promise<any> {
     try {
-     // member collection 
+     // member collection
      const collection = await this.afStore.firestore.collection('member').where('id', '==', id).get();
-     
+
      // collection 존재 여부에 따른 분기
      if(collection.docs.length === 0) {
        return null;
@@ -114,7 +108,7 @@ export class MemberProvider {
     try {
       // firend collection
       const collection = await this.afStore.firestore.collection('member').doc(uid).collection('friend').get();
-      
+
       // collection 존재 여부에 따른 분기
       if (collection.docs.length === 0) {
         // todo
@@ -143,7 +137,7 @@ export class MemberProvider {
     try {
       // firend collection
       const collection = this.afStore.firestore.collection('member').doc(uid).collection('friend');
-      
+
       await collection.add({uid: f_uid});
     } catch(err) {
       console.log(err);

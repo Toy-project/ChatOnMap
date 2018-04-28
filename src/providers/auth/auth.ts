@@ -32,10 +32,6 @@ export class AuthProvider {
     try {
       const result = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
 
-      console.log('-----------------------------------------');
-      console.log('this.afAuth.auth.signInWithEmailAndPassword(email, password) :', result);
-      console.log('-----------------------------------------');
-
       return result;
     } catch (e) {
       throw e;
@@ -46,10 +42,6 @@ export class AuthProvider {
   async logout(): Promise<any> {
     try {
       const result = await this.afAuth.auth.signOut();
-
-      console.log('-----------------------------------------');
-      console.log('this.afAuth.auth.signOut(); :', result);
-      console.log('-----------------------------------------');
 
       return result;
     } catch (e) {
@@ -64,7 +56,8 @@ export class AuthProvider {
   async setNewPasswordByEmail(email: string): Promise<any> {
     try {
       //비밀번호 재설정하는 이메일 보내기
-      await firebase.auth().sendPasswordResetEmail(email);
+      const result = firebase.auth().sendPasswordResetEmail(email);
+      return result;
     } catch (e) {
       throw e;
     }
