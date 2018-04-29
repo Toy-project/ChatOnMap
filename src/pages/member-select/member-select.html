@@ -6,9 +6,9 @@
 <!-- contents -->
 <ion-content class="app-contents">
   <!-- friend search -->
-  <ion-searchbar (ionInput)="friendFilter($event)" class="searchbar-friend"></ion-searchbar>
+  <ion-searchbar (ionInput)="onFilterEvent($event)" class="searchbar-friend"></ion-searchbar>
   <!-- friends list -->
-  <ion-list class="list-friend list-friend-filter">
+  <ion-list no-lines class="list-friend">
     <ion-item *ngFor="let friend of friendsDataFilter; let ind = index;">
       <ion-avatar item-start>
         <ion-img src="{{friend.photoURL}}" alt="{{friend.name}} photo"></ion-img>

@@ -6,10 +6,10 @@ import { MemberProvider } from '../../providers/member/member';
 
 @IonicPage()
 @Component({
-  selector: 'page-member-list',
-  templateUrl: 'member-list.html',
+  selector: 'page-member-select',
+  templateUrl: 'member-select.html',
 })
-export class MemberListPage {
+export class MemberSelectPage {
 
   type: string = 'modal';
   next: any = {
@@ -17,7 +17,6 @@ export class MemberListPage {
     icon: 'checkmark',
   };
 
-  authMember: any = {};
   friendsData: Array<any> = [];
   friendsDataFilter: Array<any> = [];
 
@@ -27,13 +26,20 @@ export class MemberListPage {
     public navParams: NavParams,
     public viewController: ViewController,
     public memberProvider: MemberProvider,
-  ) { }
-
-  ionViewDidLoad() {
-    this.getFriends();
+  ) {
+    this.friendsData = this.navParams.get('friends');
+    this.friendsDataFilter = this.friendsData;
   }
 
-  friendFilter(event): void {
+  ionViewDidLoad() {
+    
+  }
+
+  /**
+   *  Searchbar Filter event
+   * @param  {any} event 
+   */
+  onFilterEvent(event): void {
     // value
     this.friendsDataFilter = this.friendsData;
     // input value
@@ -46,24 +52,10 @@ export class MemberListPage {
   }
 
   /**
-   *  Get Friend
-   */
-  async getFriends(): Promise<any> {
-    this.authMember = await this.storage.get('member');
-    this.friendsData = await this.memberProvider.getFriends(this.authMember.uid);
-    this.friendsDataFilter = this.friendsData;
-  }
-
-  /**
    *  Close Modal
-   * @param  {boolean} bool
    */
-  dismiss(bool: boolean) {
-    if (bool) {
-      this.viewController.dismiss();
-    } else {
-      // todo
-    }
+  dismiss() {
+    this.viewController.dismiss();
   }
 
 }

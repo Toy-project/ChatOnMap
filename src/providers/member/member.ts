@@ -4,6 +4,8 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireStorage } from 'angularfire2/storage';
 
+import { Observable } from 'rxjs/observable';
+
 @Injectable()
 export class MemberProvider {
 
@@ -109,29 +111,10 @@ export class MemberProvider {
   /**
    * Get Friends
    * @param  {string} uid
+   * @param  {string} type
    */
-  async getFriends(uid: string): Promise<any> {
-    try {
-      // firend collection
-      const collection = await this.afStore.firestore.collection('member').doc(uid).collection('friend').get();
-      
-      // collection 존재 여부에 따른 분기
-      if (collection.docs.length === 0) {
-        // todo
-      } else {
-        let firends: Array<any> = [];
-        await Promise.all(
-          collection.docs.map(async (doc) => {
-            const member = await this.afStore.firestore.collection('member').doc(doc.data().uid).get();
-            firends.push(Object.assign({key: doc.id}, member.data()));
-          })
-        )
-        // 가나다순 정렬 후 return
-        return firends.sort((a, b) => { return a.name < b.name ? -1 : a.name > b.name ? 1 : 0; });
-      }
-    } catch(err) {
-      console.log(err);
-    }
+  getFriends(uid: string, type: string): Observable<any> {
+    return this.afStore.collection('member').doc(uid).collection('friend').snapshotChanges();
   }
 
   /**
@@ -144,7 +127,28 @@ export class MemberProvider {
       // firend collection
       const collection = this.afStore.firestore.collection('member').doc(uid).collection('friend');
       
-      await collection.add({uid: f_uid});
+      await collection.add({
+        uid: f_uid,
+        type: 'common' // common, hide, block
+      });
+    } catch(err) {
+      console.log(err);
+    }
+  }
+
+  /**
+   * Update Friend Type
+   * @param  {string} uid
+   * @param  {string} key
+   * @param  {string} type
+   */
+  async updateFriendType(uid: string, key: string, type: string): Promise<any> {
+    try {
+      // firend collection
+      await this.afStore.firestore.collection('member').doc(uid).collection('friend').doc(key).update({
+        type: type
+      });
+      return true;
     } catch(err) {
       console.log(err);
     }

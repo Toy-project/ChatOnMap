@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController, ActionSheetController } from 'ionic-angular';
 
 import { MemberProvider } from '../../providers/member/member';
 
@@ -13,6 +13,7 @@ export class MypagePage {
 
   authMember: any = {};
   friendsData: Array<any> = [];
+  friendsDataFilter: Array<any> = [];
   loader: any;
 
   constructor(
@@ -21,40 +22,107 @@ export class MypagePage {
     public navParams: NavParams,
     public modalController: ModalController,
     public loadingController: LoadingController,
+    public actionSheetController: ActionSheetController,
     public memberProvider: MemberProvider,
   ) { }
 
   ionViewDidLoad() {
-    this.getFriends();
+    this.getFriends('common');
   }
 
-  presentMemberSearchModal(): void {
-    let memberSearchModal = this.modalController.create('MemberSearchPage');
-
-    memberSearchModal.present();
-    memberSearchModal.onDidDismiss(() => {
-      this.getFriends();
-    });
-  }
-
-  presentMemberDetailModal(value): void {
+  /**
+   *  Present Member Detail Modal
+   * @param  {any} profile
+   */
+  presentMemberDetailModal(profile: any): void {
     let memberDetailModal = this.modalController.create('MemberDetailPage', {
-      profile: value,
+      profile: profile,
       friend: true,
-      modify: this.authMember.uid === value.uid ? true : false
+      modify: this.authMember.uid === profile.uid ? true : false
     });
     
     memberDetailModal.present();
   }
 
-  presentMemberListModal(): void {
-    let memberListModal = this.modalController.create('MemberListPage', {
-      list: this.friendsData
-    });
+  /**
+   *  Present Member Search Modal
+   * @param  {any} fab
+   */
+  presentMemberSearchModal(fab?: any): void {
+    let memberSearchModal = this.modalController.create('MemberSearchPage');
 
-    memberListModal.present();
+    memberSearchModal.present();
+    // fab close
+    fab ? fab.close() : true;
   }
 
+  /**
+   *  Present Member Select List Modal
+   * @param  {any} fab
+   */
+  presentMemberSelectModal(fab?: any): void {
+    let memberSelectModal = this.modalController.create('MemberSelectPage', {
+      friends: this.friendsData
+    });
+
+    memberSelectModal.present();
+    // fab close
+    fab ? fab.close() : true;
+  }
+
+  /**
+   *  Present Member Manage Modal
+   * @param  {any} fab
+   */
+  presentMemberManageModal(fab?: any): void {
+    let memberManageModal = this.modalController.create('MemberManagePage', {
+      authMember: this.authMember
+    });
+
+    memberManageModal.present();
+    // fab close
+    fab ? fab.close() : true;
+  }
+
+  /**
+   *  Present Member ActionSheet
+   * @param  {string} key
+   */
+  presentMemberAction(key: string): void {
+    // actionsheet define
+    const actionSheet = this.actionSheetController.create({
+      buttons: [
+        {
+          text: '친구 숨김',
+          handler: async () => {
+            await this.memberProvider.updateFriendType(this.authMember.uid, key, 'hide');
+          }
+        },
+        {
+          text: '친구 차단',
+          handler: async () => {
+            await this.memberProvider.updateFriendType(this.authMember.uid, key, 'block');
+          }
+        },
+        {
+          text: '글작성',
+          handler: () => {
+            this.presentMemberSelectModal();
+          }
+        },
+        {
+          text: '취소',
+          role: 'cancel'
+        }
+      ]
+    });
+    // actionsheet show
+    actionSheet.present();
+  }
+
+  /**
+   *  Present Loading
+   */
   presentLoading(): void {
     this.loader = this.loadingController.create({
       spinner: 'dots'
@@ -63,31 +131,47 @@ export class MypagePage {
     this.loader.present();
   }
 
+  /**
+   *  Close Loading
+   */
   dismissLoading(): void {
     this.loader.dismiss();
   }
 
   /**
-   *  Get Friend
+   *  Searchbar Filter event
+   * @param  {any} event
    */
-  async getFriends(): Promise<any> {
-    this.authMember = await this.storage.get('member');
-    this.friendsData = await this.memberProvider.getFriends(this.authMember.uid);
+  onFilterEvent(event): void {
+    // value
+    this.friendsDataFilter = this.friendsData;
+    // input value
+    let val = event.target.value;
+    if (val && val.trim() !== '') {
+      this.friendsDataFilter = this.friendsDataFilter.filter((friend, index, array) => {
+        return friend.name.toLowerCase().includes(val.toLowerCase());
+      });
+    };
   }
 
   /**
-   *  Search Member By Id
-   * @param  {string} uid
-   * @param  {string} key
+   *  Get Friend
+   * @param  {string} type
    */
-  async deleteFriend(uid: string, key: string): Promise<any> {
-    // loading start
-    this.presentLoading();
-    // delete friend
-    await this.memberProvider.deleteFriend(uid, key);
-    await this.getFriends();
-    // loading start
-    this.dismissLoading();
+  async getFriends(type: string): Promise<any> {
+    this.authMember = await this.storage.get('member');
+    this.memberProvider.getFriends(this.authMember.uid, type).subscribe(async (res) => {
+      // type filter
+      res = res.filter((item) => {return item.payload.doc.data().type === type});
+      this.friendsData = await Promise.all(
+        res.map(async (item, index) => {
+          const member = await this.memberProvider.getMember(item.payload.doc.data().uid);
+          return Object.assign({key: item.payload.doc.id}, member.data());
+        })
+      )
+    })
+    this.friendsData.sort((a, b) => { return a.name < b.name ? -1 : a.name > b.name ? 1 : 0; });
+    this.friendsDataFilter = this.friendsData;
   }
 
 }

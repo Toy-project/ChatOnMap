@@ -7,7 +7,7 @@
         <ion-icon ios="ios-notifications" md="md-notifications"></ion-icon>
         <ion-badge color="primary">{{alarmCount}}</ion-badge>
       </button>
-      <button type="button" class="btn btn-close" *ngIf="type === 'modal'" (click)="closeModal(true)">
+      <button type="button" class="btn btn-close" *ngIf="type === 'modal'" (click)="closeModal()">
         <ion-icon ios="ios-close" md="md-close"></ion-icon>
       </button>
     </ion-col>

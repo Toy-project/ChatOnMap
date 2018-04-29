@@ -31,14 +31,9 @@ export class MemberDetailPage {
 
   /**
    *  Close Modal
-   * @param  {boolean} bool
    */
-  dismiss(bool: boolean) {
-    if (bool) {
-      this.viewController.dismiss();
-    } else {
-      // todo
-    }
+  dismiss() {
+    this.viewController.dismiss();
   }
 
 }

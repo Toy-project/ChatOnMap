@@ -39,13 +39,19 @@ export class MemberSearchPage {
 
   }
 
+  /**
+   *  Create Search Form
+   */
   createSearchForm(): void {
     this.searchForm = this.formBuilder.group({
       searchText: ['', Validators.compose([Validators.required])],
     });
     this.searchText = this.searchForm.controls['searchText'];
   }
-
+  
+  /**
+   *  Present Loading
+   */
   presentLoading(): void {
     this.searchLoader = this.loadingController.create({
       spinner: 'dots'
@@ -54,6 +60,9 @@ export class MemberSearchPage {
     this.searchLoader.present();
   }
 
+  /**
+   *  Close Loading
+   */
   dismissLoading(): void {
     this.searchLoader.dismiss();
   }
@@ -88,25 +97,20 @@ export class MemberSearchPage {
   }
 
   /**
-   *  Close Modal
+   *  add Friend
    * @param  {any} value
    */
   async addFriendEvent(value): Promise<any> {
     const authMember = await this.storage.get('member');
     await this.memberProvider.addFriend(authMember.uid, value.uid);
-    this.dismiss(true);
+    this.dismiss();
   }
 
   /**
    *  Close Modal
-   * @param  {boolean} bool
    */
-  dismiss(bool: boolean): void {
-    if (bool) {
-      this.viewController.dismiss();
-    } else {
-      // todo
-    }
+  dismiss(): void {
+    this.viewController.dismiss();
   }
 
 }

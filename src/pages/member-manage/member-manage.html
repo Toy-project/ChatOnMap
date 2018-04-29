@@ -1,0 +1,32 @@
+<!-- header -->
+<ion-header class="app-header">
+  <lay-header [type]="type" [next]="next" (dismiss)="dismiss($event)"></lay-header>
+</ion-header>
+
+<!-- contents -->
+<ion-content class="app-contents">
+  <ion-segment [(ngModel)]="segment">
+    <ion-segment-button value="hide">숨김 친구 관리</ion-segment-button>
+    <ion-segment-button value="block">차단 친구 관리</ion-segment-button>
+  </ion-segment>
+  <section [ngSwitch]="segment">
+    <!-- hide friends -->
+    <ion-list no-lines class="list-friend" *ngSwitchCase="'hide'">
+      <ion-item *ngFor="let friend of friendsData.hide; let ind = index;" (press)="presentMemberActionIfHide(friend.key)">
+        <ion-avatar item-start>
+          <ion-img src="{{friend.photoURL}}" alt="{{friend.name}} photo"></ion-img>
+        </ion-avatar>
+        <ion-label>{{friend.name}}</ion-label>
+      </ion-item>
+    </ion-list>
+    <!-- block friends -->
+    <ion-list no-lines class="list-friend" *ngSwitchCase="'block'">
+      <ion-item *ngFor="let friend of friendsData.block; let ind = index;" (press)="presentMemberActionIfBlock(friend.key)">
+        <ion-avatar item-start>
+          <ion-img src="{{friend.photoURL}}" alt="{{friend.name}} photo"></ion-img>
+        </ion-avatar>
+        <ion-label>{{friend.name}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </section>
+</ion-content>

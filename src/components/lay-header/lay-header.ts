@@ -28,10 +28,9 @@ export class LayHeaderComponent {
 
   /**
    *  Close Modal
-   * @param  {boolean} bool
    */
-  closeModal(bool: boolean) {
-    this.dismiss.emit(bool);
+  closeModal() {
+    this.dismiss.emit();
   }
 
 }

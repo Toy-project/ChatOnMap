@@ -2,60 +2,36 @@
 // Mypage
 //
 
+.searchbar-friend {
+  &.searchbar-ios  {
+    height: 45px;
+    border-top: 0;
+  }
+
+  &.searchbar-md {
+    height: 55px;
+
+    .searchbar-input {
+      height: 39px;
+    }
+  }
+}
+
 .list-friend {
   margin: 0;
+}
 
-  .item:not(.item-divider) {
-    .label {
-      color: theme-color('primary');
-    }
+.btn-manage {
+  .fab-list-active {
+    right: 0;
+    min-width: 100px;
   }
 
-  .item-wrapper {
-    
-    &:last-child {
-      .item-block {
-        border-bottom: 0;
-      }
-    }
-
-    .item-block {
-      border: 0 !important;
-  
-      &.item-md {
-        margin-bottom: 0;
-      }
-  
-      &:last-child {
-        border-bottom: 0;  
-      }
-  
-      &:first-child {
-        border-top: 0;
-      }
-  
-      .item-inner {
-        border-bottom: 0;
-  
-        a {
-          text-decoration: none;
-        }
-      }
-    } 
-  }
-
-  ion-item-options {
-    border-bottom:  0;
-    
-    .button {
-      width: 50px;
-    }
-
-    .button-inner {
-      .icon {
-        padding: 0 !important;
-        font-size: $font-size-base * 1.5;
-      }
-    }
+  .btn {
+    width: 100%;
+    display: block;
+    font-size: $font-size-base;
+    margin: $font-size-base / 2 0;
+    text-align: right;
   }
 }
